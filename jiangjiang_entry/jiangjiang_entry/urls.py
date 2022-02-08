@@ -20,7 +20,7 @@ from linebot import LineBotApi
 from linebot.models import TextSendMessage, TemplateSendMessage, CarouselTemplate, CarouselColumn, MessageAction, PostbackAction, ImageSendMessage
 from linebot.exceptions import LineBotApiError
 
-ACCESS_TOKEN = 'iXe8Mrhg4CsoWwiEoQHIhOhYIHebJ0VVVOMSGWYT5tS4R5iFofob0r0+njDR9ButbHKh++mV2xHsE6MACKg3TfovMbSmYTEndwZCLmgxVnj2ipWCbRS96xXYIGG7ed1waqeQDcqA1zxiYAaGIZWPhwdB04t89/1O/w1cDnyilFU='
+ACCESS_TOKEN = ''
 line_bot_api = LineBotApi(ACCESS_TOKEN)
 
 @csrf_exempt
@@ -44,19 +44,15 @@ def callback(request):
     reply_token = sent_json['events'][0]['replyToken']
     
     w = re.search('(日程表|参加意思表明|エントリー|完了|考え中です|確認|キャンセル)', sent_message)
-    # wは送ってきたメッセージ内の単語
-    # y = re.search('(参加します|pb_process)', w.group())
-    # yは参加しますは入っていますか
+
     try:
         if w != None:
             if w.group() == 'エントリー':
-                # 中国語ver or w.group() == '報名':
                 event_types = Event_Type.objects.all()
                 entries = Entry.objects.all()
                 columns = []
                 for event_type in event_types:
                     actions = []
-                    # for entry in entries:
                     pob = PostbackAction(
                         type="postback",
                         label="参加します",
@@ -86,10 +82,7 @@ def callback(request):
                         columns=columns
                     )
                 )
-                # pback_data = sent_json['events'][0]['postback']['data']
-                
-#               y = re.search('参加します', sent_message)
-#               x = re.search(f'{event_types}', sent_message)
+
             elif w.group() == '参加意思表明':
                 event_type = Event_Type.objects.filter(event_date=pb_data).first()
                 entry = Entry.objects.filter(name= '参加します' ).first()
@@ -186,13 +179,6 @@ def output_application_infos(application_infos):
     for application_info in application_infos:
         result += ' 'f'{application_info.event_type.type_name}{application_info.event_type.event_date:%m月%d日%H時%M分}～\n''  :'f'{application_info.entry.name}\n' 
     return result
-
-# def output_application_log_confirmation(output_application_log_confirmation):
-#      result = ''
-#      for application_log in application_logs:
-#          result += f'{application_log.entry.name}\n' 
-#      return result
-
 
 
 urlpatterns = [
