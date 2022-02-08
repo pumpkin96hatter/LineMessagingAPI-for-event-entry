@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-SECRET_KEY = 'django-insecure-s1#5_^7ygh#()d91dwc_0*je)m_!9vkuba%qfo%+%g$6#t_#(u'
+SECRET_KEY = ''
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -87,33 +87,9 @@ TEMPLATES = [
 # ローカルの時はコメントアウト
 # WSGI_APPLICATION = 'jiangjiang_entry.wsgi.application'
 
-# 変更後2
+
 default_dburl = 'sqlite:///' + str(BASE_DIR / "db.sqlite3")
 
-# Database
-# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
-# 変更
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-# 変更後1
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'name',
-#         'USER': 'user',
-#         'PASSWORD': '',
-#         'HOST': 'host',
-#         'PORT': '',
-#     }
-# }
-
-# 変更後2
 DATABASES = {
     'default': config('DATABASE_URL', default=default_dburl, cast=dburl),
 }
