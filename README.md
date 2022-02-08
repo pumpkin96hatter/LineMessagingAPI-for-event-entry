@@ -20,4 +20,3 @@ curl.exe -v -X POST https://api.line.me/v2/bot/message/broadcast　^
      -H "Content-Type: application/json" ^
      -H "Authorization: Bearer {ACCESSトークン}" ^
     -d " { \"to\": \"botのアカウントID\", \"messages\": [ { \"type\": \"image\", \"originalContentUrl\": \"　URL \", \"previewImageUrl\": \" URL \"} ] }"
-
