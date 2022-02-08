@@ -58,11 +58,3 @@ class Application_Info(models.Model):
     def __str__(self):
         return f'{self.applied_at}'
 
-#キャンセルの時考慮 
-# class Application_Log(models.Model):
-#     entry = models.ManyToManyField(Entry, blank=True)
-#     amount = models.SmallIntegerField(blank=True, null=True, default=1)
-#     applied_at = models.DateTimeField(default=timezone.now)
-#     application_info = models.ForeignKey(to=Application_Info, on_delete=models.CASCADE)
-#     # event_type = models.ForeignKey(to=Event_Type, on_delete=models.CASCADE)
-
