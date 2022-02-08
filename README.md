@@ -1,4 +1,4 @@
-line-bot-django-for-application
+line-messaging-api-django-for-application
 
 こちらは1～200人以下程度のイベント参加申請を受け付けるline masseging apiです。
 無料でシンプル、コードを一切書かない人でも管理できる、繰り返し使うことを意図しました。
